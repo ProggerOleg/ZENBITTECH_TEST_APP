@@ -1,0 +1,42 @@
+
+header {
+    background-color: var(--color--172234);
+}
+h2.position-absolute{
+    margin-bottom: 0;
+    max-width: 200px;
+}
+.navbar-brand{
+    color: var(--color--B29F7E);
+    font-weight: 700;
+    font-size: 38px;
+}
+.navbar-brand:hover, .navbar-brand:focus{
+    transition: color 1s;
+    color: white;
+}
+
+.btn {
+    width: 8em;
+    max-height: 4em;
+}
+.btn.login {
+    color: var(--color--B29F7E);
+    border: 1px solid var(--color--B29F7E);
+}
+.btn.register {
+    color: white;
+    background-color: var(--color--B29F7E);
+}
+
+@media (max-width: 425px) {
+    .navbar-brand{
+        visibility: collapse;
+    }
+}
+
+@media (max-width: 768px) {
+    h2.position-absolute{
+        width: 100px;
+    }
+}
