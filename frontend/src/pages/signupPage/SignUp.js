@@ -10,7 +10,7 @@ const SignUp = () => {
     const [password, setPassword] = useState('');
 
     // Use the generated hook for the register mutation
-    const [register, { isLoading, isError, error }] = useRegisterMutation();
+    const [register] = useRegisterMutation();
     let navigate = useNavigate();
     const dispatch = useDispatch();
     const handleRegister = async (e) => {
@@ -18,8 +18,16 @@ const SignUp = () => {
 
         try {
             const response = await register({ name, email, password });
-            dispatch(setUser(response));
-            return navigate("/");
+            console.log(response);
+            if (response.error || response.message) {
+                // Handle registration error and display the error message
+                console.error('Registration error:', response.error.data.message);
+                // You can set the error message to be displayed to the user
+                // For example, you can store it in a component state or use a toast notification library.
+            } else {
+                dispatch(setUser(response.data));
+                return navigate("/");
+            }
             // Handle successful registration, e.g., redirect to a login page or display a success message
         } catch (error) {
             // Handle registration error, e.g., display an error message

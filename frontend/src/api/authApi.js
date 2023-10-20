@@ -30,10 +30,10 @@ export const authApi = createApi({
             invalidatesTags: ['Auth'],
         }),
         resetPassword: builder.mutation({
-            query: (email) => ({
-                url: '/api/user/reset-password-token/:token',
+            query: ({ password, token }) => ({
+                url: `/api/user/reset-password-token/${token}`,
                 method: 'PUT',
-                body: email,
+                body: password,
             }),
             invalidatesTags: ['Auth'],
         }),

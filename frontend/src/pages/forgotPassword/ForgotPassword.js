@@ -16,14 +16,16 @@ const ForgotPassword = () => {
             setLoading(true);
             const response = await forgotPassword({ email });
             console.log(response);
+            if (response.error || response.messsage) {
+                console.error('Sending mail error:', response.error.data.message);
+            } else {
+                setLoading(true);
+                setButtonDisabled(true);
+            }
             // Handle the success, e.g., display a message informing the user to check their email
         } catch (error) {
             // Handle the error, e.g., display an error message
-            console.error('Forgot password error:', error);
-        }
-        finally {
-            setLoading(true);
-            setButtonDisabled(true);
+            console.error('Forgot password error:', error.data.message);
         }
     };
 

@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
     `${ process.env.DATABASE_USERNAME }`,
     process.env.DATABASE_PASSWORD,
     {
-        host: 'localhost',
+        host: '127.0.0.1',
         dialect: 'mysql'
     }
 );
@@ -30,9 +30,10 @@ sequelize.authenticate().then(() => {
 });
 
 app.use(morgan('dev'));
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
+app.use(cors());
+app.options('*', cors({
+    origin: 'http://178.128.207.56/',
+    credentials: true,
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

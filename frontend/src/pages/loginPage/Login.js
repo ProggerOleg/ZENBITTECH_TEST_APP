@@ -21,10 +21,14 @@ const Login = () => {
         try {
             const response = await login({ email, password });
             console.log(response);
-            dispatch(setUser(response));
-            const refreshToken = Cookies.get('refreshToken');
-            console.log(refreshToken);
-            return navigate("/");
+            if (response && response.data.token) {
+                dispatch(setUser(response.data));
+                const refreshToken = Cookies.get('refreshToken');
+                console.log(refreshToken);
+                return navigate("/");
+            } else {
+                console.error("Login error: Invalid response");
+            }
             // Handle successful login, e.g., redirect to another page or display a success message
         } catch (error) {
             // Handle login error, e.g., display an error message

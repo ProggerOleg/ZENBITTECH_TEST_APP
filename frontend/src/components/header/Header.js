@@ -28,7 +28,7 @@ const Header = () => {
                 <div className="row align-items-center">
                     <h2 className='position-absolute'><Link className='navbar-brand' to="/">Home</Link></h2>
                     <div className="d-flex justify-content-end btns gap-15 w-3">
-                        {user ? (
+                        {(user?.token || user?.password) ? (
                             // Display "Log Out" button when the user is authenticated
                             <button onClick={handleLogout} className='btn login' variant="primary">
                                 Log Out
